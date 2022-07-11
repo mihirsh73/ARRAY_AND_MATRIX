@@ -1,0 +1,39 @@
+#include <bits/stdc++.h> 
+static bool comp(vector<int> a, vector<int> b)
+{
+    if(a[0]==b[0])
+    {
+        return a[1]<b[1];
+    }
+    return a[0]<b[0];
+}
+vector<vector<int>> pairSum(vector<int> &arr, int s){                   ex = {2,2,2} o/p {2,2},{2,2} {2,2}
+   unordered_map<int,int> mp;
+    vector<vector<int>> res;
+    for(int i=0; i<arr.size(); i++)
+    {
+        vector<int> ans;
+        if(mp.find(s-arr[i])!=mp.end())
+        {
+            int count= mp[s-arr[i]];
+            while(count--){
+            if(s-arr[i]<arr[i]){
+            ans.push_back(s-arr[i]);
+            ans.push_back(arr[i]);
+            res.push_back(ans);
+            }
+        else{
+            ans.push_back(arr[i]);
+            ans.push_back(s-arr[i]);
+            res.push_back(ans);
+            
+        }
+            }
+    }
+        
+        mp[arr[i]]++;
+    }
+    sort(res.begin(),res.end(),comp);
+    return res;
+    // TC O(N*N) if all the element are the same
+}
