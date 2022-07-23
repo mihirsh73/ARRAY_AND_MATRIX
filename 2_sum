@@ -1,0 +1,32 @@
+#include <bits/stdc++.h> 
+vector<vector<int>> pairSum(vector<int> &arr, int s){
+   vector<vector<int>> res;
+    unordered_map<int,int> mp;
+    for(int i=0; i<arr.size(); i++)
+    {
+        vector<int> res1;
+        if(mp.find(s-arr[i])!=mp.end())
+        {
+            int count= mp[s-arr[i]];
+            while(count--){
+            if(s-arr[i]<arr[i]){
+            res1.push_back(s-arr[i]);
+            res1.push_back(arr[i]);
+            res.push_back(res1);
+            }
+            else{
+                res1.push_back(arr[i]);
+                res1.push_back(s-arr[i]);
+            
+            res.push_back(res1);
+            }
+            }
+            
+            
+        }
+        mp[arr[i]]++;
+    }
+    sort(res.begin(),res.end()); // worst case O(n^2) when all the elements are equal
+    return res;
+        
+}
