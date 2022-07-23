@@ -1,0 +1,28 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+//User function Template for C++
+
+class Solution{
+    public:
+    int findSubArraySum(int Arr[], int N, int k)
+    {
+        unordered_map<int,int> mp;
+        int sum=0;
+        int count=0;
+        for(int i=0; i<N; i++)
+        {
+            sum += Arr[i];
+            if(sum==k) count++;
+            if(mp.find(sum-k)!=mp.end())          TC O(N) SC O(N)
+            {
+                count += mp[sum-k];
+            }
+            mp[sum]++;
+        }
+        return count;
+    }
+};
+
