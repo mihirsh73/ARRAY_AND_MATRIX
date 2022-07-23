@@ -1,0 +1,38 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+
+class Solution{
+  public:
+    //Function to count subarrays with 1s and 0s.
+    long long int countSubarrWithEqualZeroAndOne(int arr[], int n)
+    {
+        long long int sum=0;
+        long long int count=0;
+        unordered_map<int,int> mp;
+          for(int i=0; i<n; i++)
+          {
+            if(arr[i]==0)
+            {
+                sum -=1;
+            }
+            else
+            {
+                sum += arr[i];
+            }
+            if(sum==0)
+            {
+                count++;
+            }
+            if(mp.find(sum)!=mp.end())           // TC O(N) SC O(N)
+            {
+                count += mp[sum];
+            }
+            mp[sum]++;
+          }
+          return count;
+    }
+}
