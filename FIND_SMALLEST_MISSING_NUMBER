@@ -14,7 +14,7 @@ int find_missing(int arr[], int n)
         for(i=0; i<n; i++)                 ex 1,4 2 after above condition -1,-4,2 here 2 stay positive because 4 is out of index 
         {
             if(arr[i]>0)
-            {
+            {                               // TC O(N) SC O(1)
                 return i+1;
             }
         }
