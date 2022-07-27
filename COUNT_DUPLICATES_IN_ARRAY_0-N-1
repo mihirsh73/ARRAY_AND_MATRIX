@@ -1,0 +1,17 @@
+Given an array a[] of size N which contains elements from 0 to N-1
+vector<int> res;
+        for(int i=0; i<n; i++)
+        {
+            int index= arr[i]%n;                // TC O(N) SC O(1)     
+            arr[index] +=n;
+            
+        }
+        for(int i=0; i<n; i++)
+        {
+            if(arr[i]/n>=2)
+            {
+                res.push_back(i);
+            }
+        }
+        if(res.size()==0)res.push_back(-1);
+        return res;
