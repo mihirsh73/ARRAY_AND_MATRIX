@@ -1,0 +1,25 @@
+iven an array arr[] denoting heights of N towers and a positive integer K.
+
+For each tower, you must perform exactly one of the following operations exactly once.
+
+Increase the height of the tower by K.
+Decrease the height of the tower by K ( you can do this operation only if the height of the tower is greater than or equal to K)
+Find out the minimum possible difference between the height of the shortest and tallest towers after you have modified each tower.
+int getMinDiff(int arr[], int n, int k) {
+        
+        sort(arr,arr+n);
+        int min_height,max_height;
+        
+        int ans= arr[n-1]-arr[0];
+        for(int i=1; i<n; i++)
+        {
+            if(arr[i]-k<0)
+            {
+                continue;
+            }
+            min_height= min(arr[0]+k,arr[i]-k);
+            max_height = max(arr[n-1]-k, arr[i-1]+k);  // tc o(n(log(n))
+            ans = min(ans,max_height-min_height);
+        }
+        return ans;
+    }
