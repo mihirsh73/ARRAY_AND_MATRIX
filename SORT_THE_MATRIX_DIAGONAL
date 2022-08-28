@@ -1,0 +1,45 @@
+class Solution {
+public:
+    vector<vector<int>> diagonalSort(vector<vector<int>>& mat) {
+        int n= mat.size();
+        int m= mat[0].size();
+       priority_queue<int,vector<int>, greater<int>> pq;
+        for(int k=0; k<m-1; k++)
+        {
+            int i=0;
+            int j=k;
+            while(i<n && j<m)
+            {
+                pq.push(mat[i++][j++]);     // upper half sorted
+            }
+            i=0;
+            j=k;
+            while(i<n && j<m)
+            {
+                mat[i][j]=pq.top();
+                i++;
+                j++;
+                pq.pop();
+            }
+        }
+        for(int k=1; k<n-1; k++)
+        {
+            int i=k;
+            int j=0;
+            while(i<n && j<m)
+            {
+                pq.push(mat[i][j]);
+                i++;
+                j++;
+            }
+            i=k;
+            j=0;
+            while(i<n && j<m)
+            {
+                mat[i++][j++]=pq.top();
+                pq.pop();
+            }
+        }
+        return mat;  // TC O(M*N*(LOG(D))) D = size of diagonal SC O(D)
+    }
+};
