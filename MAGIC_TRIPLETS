@@ -1,0 +1,28 @@
+Given an array of size n, a triplet (a[i], a[j], a[k]) is called a Magic Triplet 
+if a[i] < a[j] < a[k] and i < j < k.  Count the number of magic triplets in a given array.
+int countTriplets(vector<int>nums){
+	    int count=0;
+	    stack<int> st;
+	    int rightgreater[nums.size()];
+	    for(int i=nums.size()-1; i>=0; i--)
+	    {
+	        int count=0;
+	        if(st.empty()==false && nums[i]>nums[st.top()])
+	        {
+	            st.top();
+	        }
+	       else if(st.empty()==true)
+	        {
+	            rightgreater[i]=st.size();
+	            
+	          
+	        }
+	        st.push(i);
+	    }
+	    count=0;
+	    for(int i=0; i<nums.size();i++)
+	    {
+	        count += rightgreater[i];
+	    }
+	    return count;
+	}       // TC O(N^2) SC O(2N)
